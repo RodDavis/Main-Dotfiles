@@ -1,0 +1,114 @@
+# Custom
+
+#
+# media keys
+#
+
+XF86AudioRaiseVolume
+        pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+ 
+XF86AudioLowerVolume
+        pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+
+XF86AudioMute
+        pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+XF86AudioMicMute
+        pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+XF86AudioPlay
+        playerctl play-pause
+
+XF86AudioNext
+        playerctl next
+
+XF86AudioPrev
+        playerctl previous
+
+# Screen brightness controls
+XF86MonBrightnessUp
+        xbacklight -inc 10; notify-send 'brightness up'
+XF86MonBrightnessDown
+		xbacklight -dec 10; notify-send 'brightness down'
+
+XF86Sleep
+        systemctl suspend 
+
+# change border
+#super + {u,y,n}
+#	i3-msg {border none, border pixel 3, border normal}
+
+# enter fullscreen mode for the focused container
+super + f
+	i3-msg fullscreen toggle
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+        i3-msg {focus,move} {left,down,up,right}
+
+
+# preselect the direction
+super + {g,v}
+        i3-msg {split h,split v}
+
+
+# enter fullscreen mode for the focused container
+super + f
+	i3-msg fullscreen toggle
+
+# floating window toggle
+super + shift + f
+	i3-msg floating toggle
+
+# change container layout (stacked, tabbed, toggle split)
+super + t
+	i3-msg layout toggle tabbed splith splitv
+
+# change focus between tiling / floating windows
+SUPER + Shift + t
+	i3-msg focus mode_toggle
+
+# focus the parent container
+super + a 
+	i3-msg focus parent 
+
+# focus the child container
+super + s 
+	i3-msg focus child 
+
+super + control + {Right, Left}
+	i3-msg {workspace next, workspace prev}
+
+super + {1-9,0}
+        i3-msg workspace number {1-9,10}
+super + shift + {1-9,0}
+        i3-msg move container to workspace number {1-9,10}
+
+# Browsers
+super + F2
+	firefox
+# Minimal Browser
+#super + shift+F2
+#	surf bing.com
+super + shift+F2
+	flatpak run org.qutebrowser.qutebrowser bing.com
+
+# File Managers
+super + {F3,shift + F3,F4,shift + F4}
+	{x-terminal-emulator -e ranger,x-terminal-emulator -e sudo ranger, pcmanfm, pkexec pcmanfm,}
+
+super + {d}
+	{arandr}
+
+super + q
+	i3-msg kill
+
+#super + {_,shift +,alt +} Print
+{_,shift +,alt +} Print
+	{flameshot gui, flameshot launcher, flameshot config}
+
+super + alt + {Left, Down, Up, Right}
+	i3-msg {resize shrink width 2px or 2 ppt, resize grow height 2px or 2 ppt, resize shrink height 2px or 2 ppt, resize grow width 2px or 2 ppt}
+
+
+#Session and Launcher keybinds - Look at .config/i3/ to find these binds
